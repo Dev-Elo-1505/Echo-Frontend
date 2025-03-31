@@ -1,34 +1,40 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import App from "./App";
 import Feedpage from "./pages/Feedpage";
 import CreatePetitionPage from "./pages/CreatePetitionPage";
 import SignUpPage from "./pages/auth/SignUpPage";
 import LoginPage from "./pages/auth/LoginPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        errorElement: <ErrorPage />,
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, 
+        element: <Navigate to="/auth" replace />, // Redirects to /auth if no path is provided
+      },
+      {
+        path: "auth",
+        element: <PublicRoute />, // Restricts login/signup for logged-in users
         children: [
-            {
-                index: true,
-                element: <Feedpage />
-            },
-            {
-                path: "create-petition",
-                element: <CreatePetitionPage />
-            },
-            {
-                path: "auth",
-                children: [
-                    {path: "signup", element: <SignUpPage />},
-                    {path: "login", element: <LoginPage />},
-                ]
-            }
-        ]
-    }
+          { index: true, element: <LoginPage /> }, // Login is the first page
+          { path: "signup", element: <SignUpPage /> },
+        ],
+      },
+      {
+        path: "app",
+        element: <ProtectedRoute />, // Protects routes under /app
+        children: [
+          { path: "feed", element: <Feedpage /> }, // Shown after login
+          { path: "create-petition", element: <CreatePetitionPage /> },
+        ],
+      },
+    ],
+  },
 ]);
 
 export default router;

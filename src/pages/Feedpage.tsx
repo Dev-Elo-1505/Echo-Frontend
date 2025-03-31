@@ -3,7 +3,9 @@ import PetitionCard from "../components/PetitionCard";
 import SideBar from "../components/SideBar";
 import { Link } from "react-router";
 
+
 const Feedpage = () => {
+  
   return (
     <section className="p-3 md:p-5 font-poppins bg-secondary min-h-screen">
       <div className="flex justify-between items-center text-semibold">

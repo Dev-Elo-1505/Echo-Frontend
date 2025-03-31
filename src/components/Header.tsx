@@ -1,7 +1,9 @@
 import logo from "../assets/logo.png";
 import { IoSearchOutline } from "react-icons/io5";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
+  const { user } = useAuth()
   return (
     <header className="bg-primary p-3 md:p-5 flex flex-wrap gap-4 md:gap-0 justify-between items-center w-full">
       <div className="w-16 md:w-20">
@@ -24,7 +26,7 @@ const Header = () => {
         <div className="hidden md:block text-right truncate">
           <p className="text-xs md:text-sm text-[#926B3D]">Welcome Back!</p>
           <p className="font-semibold text-sm md:text-base truncate max-w-[150px] lg:max-w-[200px]">
-            Osagumwenro Ugbo
+            {user?.name}
           </p>
         </div>
         <div
