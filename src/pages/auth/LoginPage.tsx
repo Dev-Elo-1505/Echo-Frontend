@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
+import bg from "../../assets/picbg.jpg"
 
 const Login = () => {
   const navigate = useNavigate()
