@@ -7,6 +7,7 @@ import SignUpPage from "./pages/auth/SignUpPage";
 import LoginPage from "./pages/auth/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import EmailSignUpPage from "./pages/auth/EmailSignUpPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <LoginPage /> }, // Login is the first page
           { path: "signup", element: <SignUpPage /> },
+          {path: "signup/email", element: <EmailSignUpPage />}
         ],
       },
       {

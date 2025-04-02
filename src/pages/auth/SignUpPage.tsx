@@ -2,7 +2,6 @@ import { useState } from "react";
 import { registerUser } from "../../services/authService";
 
 const SignUpPage = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -11,7 +10,7 @@ const SignUpPage = () => {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await registerUser(name, email, password);
+      await registerUser(email, password);
       setSuccess("Registration successful. You can now log in.");
     } catch (err: any) {
       setError(err.message);
@@ -24,14 +23,7 @@ const SignUpPage = () => {
       {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
       <form onSubmit={handleRegister} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Name"
-          className="w-full border p-2 rounded"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        
         <input
           type="email"
           placeholder="Email"

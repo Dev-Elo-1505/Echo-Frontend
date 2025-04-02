@@ -5,7 +5,7 @@ import Header from "./components/Header";
 function App() {
   const location = useLocation();
 
-  const hideHeader = location.pathname === "/auth" || location.pathname === "/auth/signup"
+  const hideHeader = location.pathname === "/auth" || location.pathname === "/auth/signup" || location.pathname === "/auth/signup/email"
   return (
     <div>
       {!hideHeader && <Header />}
